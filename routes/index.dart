@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dart_frog/dart_frog.dart';
 import 'package:puppeteer/puppeteer.dart' as p;
 
@@ -19,5 +21,10 @@ Future<Response> onRequest(RequestContext context) async {
 
   await browser.close();
 
-  return Response(body: dataPage);
+  return Response(
+    body: dataPage,
+    headers: {
+      HttpHeaders.contentTypeHeader: ContentType.text.value,
+    },
+  );
 }
